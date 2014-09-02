@@ -1,0 +1,24 @@
+{% extends "userLayout.html" %}
+
+{% block title %}Modify your account{% endblock %}
+
+{% block expressUserContent %}
+<h3>Modify your account</h3>
+{% for error in errors.globals %}
+<p class="alert error">{{error}}</p>
+{% endfor %}
+<form action="/me" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    {% for error in errors.fields.email %}
+    <p>{{error}}</p>
+    {% endfor %}
+    <p>
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{user.email}}" />
+    </p>
+    <p>
+        <input type="submit" value="Go" />
+    </p>
+</form>
+<a href="/me">View account informations</a>
+{% endblock %}

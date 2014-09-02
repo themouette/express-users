@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Receipes{% endblock %}</title>
+
+        {% block head %}
+        <link rel="stylesheet" href="main.css">
+        <style type="text/css" media="screen">
+            #l-menu {
+            }
+            #l-menu li {
+                display: inline-block;
+            }
+            #l-messages {
+            }
+            .alert {
+                padding: 30px 10px;
+                margin: 30px;
+                border: 1px solid;
+            }
+            .alert.error {
+                border-color: #f00;
+                color: #f00;
+                background-color: #fdd;
+            }
+            .alert.success {
+                border-color: #0f0;
+                color: #0f0;
+                background-color: #dfd;
+            }
+            .alert.info {
+                border-color: #00f;
+                color: #00f;
+                background-color: #ddf;
+            }
+        </style>
+        {% endblock %}
+    </head>
+    <body>
+
+        {% block menu %}
+        <div id="l-menu">
+            <ul>
+                {% if expressUsers.isAuthenticated %}
+                <li>{{expressUsers.current.username}}</li>
+                <li><a href="/logout">Log Out</a></li>
+                <li><a href="/me">My Account</a></li>
+                <li><a href="/me/edit">Edit My Account</a></li>
+                <li><a href="/me/password">Change password</a></li>
+                {% else %}
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endblock %}
+
+        {% block messages %}
+        <div id="l-messages">
+            {% for error in flash.error %}
+            <p class="alert error">{{error}}</p>
+            {% endfor %}
+            {% for success in flash.success %}
+            <p class="alert success">{{success}}</p>
+            {% endfor %}
+            {% for info in flash.info %}
+            <p class="alert info">{{info}}</p>
+            {% endfor %}
+        </div>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>
+

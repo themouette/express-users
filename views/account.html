@@ -1,0 +1,10 @@
+{% extends "userLayout.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block expressUserContent %}
+<h3>Account page</h3>
+<p>username: {{user.username}}</p>
+<p>email: {{user.email}}</p>
+<a href="/me/edit">Edit account informations</a>
+{% endblock %}
