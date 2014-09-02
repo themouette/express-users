@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 var session       = require('cookie-session');
 var flash         = require('connect-flash');
 var passport      = require('passport');
+var nunjucks      = require('nunjucks');
 var users         = require('../../index');
 
 
@@ -40,6 +41,11 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+nunjucks.configure(__dirname + '/views', {
+  autoescape: true,
+  express   : app
+});
+
 // A simple middleware adding
 // flash messages to template context.
 // Simply access flash messages as `flash` variable
@@ -58,10 +64,16 @@ var userRouter = users({
         {id: "julien", username: "julien", password: "pwdaaa", salt: "aaa", email: "julien@example.com"}
   ],
   // override some default views
-  views: __dirname + '/views/users'
+  views: [ __dirname + '/views', __dirname + '/views/users' ]
 });
 app.use(userRouter);
-app.get('/', function (req, res, next) {res.send('dashoard');});
+app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.html');});
+app.get('/', function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/app');
+    }
+    res.render('home.html');
+});
 
 // START THE SERVER
 // =============================================================================
