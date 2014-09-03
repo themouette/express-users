@@ -12,8 +12,11 @@ module.exports = function (options) {
     var sanitizer;
     var passwordChecker;
     var passport;
+    var fixtures;
 
     _.defaults(options, {
+        // default data to load
+        data: [],
         // Where to find views
         // this can be an array of views.
         //
@@ -39,10 +42,13 @@ module.exports = function (options) {
 
     // prepare store configuration
     store = options.store;
-    if (!store && options.memory) {
-        store = require('./lib/stores/memory')({
-            data: options.memory
-        });
+    switch (store) {
+        case 'memory':
+            store = require('./lib/stores/memory')();
+            break;
+        case 'mongo':
+            store = require('./lib/stores/mongo')();
+            break;
     }
     if (!store) {
         throw new VError('store option is mandatory');
@@ -61,6 +67,7 @@ module.exports = function (options) {
     }
     switch (passwordChecker) {
         case 'salt':
+        case 'sha1':
             passwordChecker = require('./lib/password/salt')();
             break;
         case 'plain':
@@ -75,6 +82,14 @@ module.exports = function (options) {
     passport = options.passport;
     if (!passport) {
         passport = require('./lib/passport')(store, passwordChecker);
+    }
+
+    fixtures = require('./lib/fixtures')(store, sanitizer, passwordChecker);
+    if (options.data) {
+        // we don't care about async loading
+        fixtures.loadFixtures(options.data, function (err) {
+            if (err) {debug(err);}
+        });
     }
 
 

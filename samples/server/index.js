@@ -60,8 +60,9 @@ app.use(function (req, res, next) {
 });
 
 var userRouter = users({
-  memory: [
-        {id: "julien", username: "julien", password: "pwdaaa", salt: "aaa", email: "julien@example.com"}
+  store: 'memory',
+  data: [
+        {id: "julien", username: "julien", password: "pwd", email: "julien@example.com"}
   ],
   // override some default views
   views: [ __dirname + '/views', __dirname + '/views/users' ]
