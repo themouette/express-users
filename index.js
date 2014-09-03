@@ -63,6 +63,10 @@ module.exports = function (options) {
         case 'salt':
             passwordChecker = require('./lib/password/salt')();
             break;
+        case 'plain':
+        case 'plaintext':
+            passwordChecker = require('./lib/password/plain')();
+            break;
     }
     if (!passwordChecker) {
         throw new VError('passwordChecker option is mandatory');
