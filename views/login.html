@@ -13,7 +13,7 @@
     {% endfor %}
     <p>
         <label for="username">Email:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" value="{{username}}" />
     </p>
     {% for error in errors.fields.password %}
     <p>{{error}}</p>
