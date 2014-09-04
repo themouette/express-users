@@ -1,4 +1,4 @@
-describe('Password Salt strategy', function () {
+describe('Password plaintext strategy', function () {
     var passwd;
     var user1, user2;
 
