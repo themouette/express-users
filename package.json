@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "A drop-in user dashboard for express.",
   "main": "index.js",
-  "repository": "",
+  "repository": "https://github.com/themouette/express-users.git",
   "author": "themouette",
   "scripts": {
     "start": "forever samples/server/index.js",
