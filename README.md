@@ -1,6 +1,9 @@
 express-users
 =============
 
+[![Build
+Status](https://travis-ci.org/themouette/express-users.svg?branch=master)](https://travis-ci.org/themouette/express-users)
+
 `express-users` is a drop in user management middleware.
 
 Just add **login**, **registration**, **profile** and **password reset** in a single line.
