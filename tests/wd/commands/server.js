@@ -10,6 +10,7 @@ module.exports = {
             if (err) {
                 cb(err);
             }
+            console.log('Spawn a new server on port %s', port);
             process.env.PORT = port;
             server = spawn('node', [app], {
                 stdio: [process.stdin, 'pipe', process.stderr],
@@ -34,6 +35,7 @@ module.exports = {
             .call(cb);
     },
     stopServer: function (cb) {
+        console.log('Kill server');
         server.kill();
         cb();
     }
