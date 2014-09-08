@@ -1,22 +1,22 @@
 {% extends "userLayout.html" %}
 
-{% block title %}Login{% endblock %}
+{% block userTitle %}Register{% endblock %}
 
 {% block expressUserContent  %}
 <h3>Register</h3>
 {% for error in errors.globals %}
-<p class="alert error">{{error}}</p>
+<p class="alert error error-form">{{error}}</p>
 {% endfor %}
 <form action="/register" method="POST">
     {% for error in errors.fields.username %}
-    <p>{{error}}</p>
+    <p class="error error-field error-username">{{error}}</p>
     {% endfor %}
     <p>
         <label for="username">Username:</label>
         <input type="text" name="username" value="{{user.username}}" />
     </p>
     {% for error in errors.fields.password %}
-    <p>{{error}}</p>
+    <p class="error error-field error-password">{{error}}</p>
     {% endfor %}
     <p>
         <label for="password">Password:</label>
@@ -27,7 +27,7 @@
         <input type="password" name="password_repeat" />
     </p>
     {% for error in errors.fields.email %}
-    <p>{{error}}</p>
+    <p class="error error-field error-email">{{error}}</p>
     {% endfor %}
     <p>
         <label for="email">Email:</label>

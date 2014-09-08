@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>{% block title %}Receipes{% endblock %}</title>
+        <title>{% block title %}Sample App{% endblock %}</title>
 
         {% block head %}
         <link rel="stylesheet" href="main.css">
@@ -59,13 +59,13 @@
         {% block messages %}
         <div id="l-messages">
             {% for error in flash.error %}
-            <p class="alert error">{{error}}</p>
+            <p class="alert error error-global">{{error}}</p>
             {% endfor %}
             {% for success in flash.success %}
-            <p class="alert success">{{success}}</p>
+            <p class="alert success success-global">{{success}}</p>
             {% endfor %}
             {% for info in flash.info %}
-            <p class="alert info">{{info}}</p>
+            <p class="alert info info-global">{{info}}</p>
             {% endfor %}
         </div>
         {% endblock %}

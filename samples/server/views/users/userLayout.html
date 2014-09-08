@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 
+{% block title %}
+    {{ super() }} -
+    {% block userTitle %}
+        Users
+    {% endblock %}
+{% endblock %}
 {% block content %}
     {% block expressUserContent %}
     {% endblock %}
