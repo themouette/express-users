@@ -76,8 +76,12 @@ app.get('/', function (req, res, next) {
     res.render('home.html');
 });
 
+module.exports = app;
+
 // START THE SERVER
 // =============================================================================
-var port = process.env.PORT || 8080;        // set our port
-app.listen(port);
-console.log('Magic happens on port ' + port);
+if (!module.parent) {
+    var port = process.env.PORT || 8080;        // set our port
+    app.listen(port);
+    console.log('Magic happens on port ' + port);
+}
