@@ -1,32 +1,4 @@
-var _ = require('lodash');
-
 module.exports = {
-    registerUser: function (user, cb) {
-        user = _.defaults(user, {
-            username: '',
-            password: '',
-            password_repeat: '',
-            email: ''
-        });
-        this
-            .setValue('[name="username"]', user.username)
-            .setValue('[name="password"]', user.password)
-            .setValue('[name="password_repeat"]', user.password_repeat)
-            .setValue('[name="email"]', user.email)
-            .submitForm('[action="/register"]')
-            .call(cb);
-    },
-    logIn: function(user, cb) {
-        user = _.defaults(user, {
-            username: '',
-            password: ''
-        });
-        this
-            .setValue('[name="username"]', user.username)
-            .setValue('[name="password"]', user.password)
-            .submitForm('[action="/login"]')
-            .call(cb);
-    },
     assertGlobalSuccess: function (expectedError, cb) {
         if (!cb) {
             cb = expectedError;
@@ -75,4 +47,4 @@ module.exports = {
         }
         this.call(cb);
     }
-};
+}

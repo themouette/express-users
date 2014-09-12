@@ -2,6 +2,7 @@ var _ = require('lodash');
 
 module.exports = _.extend({},
         require('screenstory/extensions/chai'),
-        require('./register'),
+        require('./utilities'),
+        require('./actions'),
         require('./server')
     );
