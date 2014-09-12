@@ -34,6 +34,28 @@
                 color: #00f;
                 background-color: #ddf;
             }
+
+            .l-wrapper{
+                margin: auto;
+                width: 960px;
+            }
+
+            /* Add profile related style */
+            .profile-show{
+                margin: auto;
+            }
+            .profile-show-legend{
+                display: inline-block;
+                width: 80px;
+                float: left;
+            }
+            .profile-show-legend:after{
+                content: ": "
+            }
+            .profile-show-item{
+                margin-left: 80px;
+                display: block;
+            }
         </style>
         {% endblock %}
     </head>
@@ -41,18 +63,20 @@
 
         {% block menu %}
         <div id="l-menu">
-            <ul>
-                {% if expressUsers.isAuthenticated %}
-                <li>{{expressUsers.current.username}}</li>
-                <li><a href="/logout">Log Out</a></li>
-                <li><a href="/me">My Account</a></li>
-                <li><a href="/me/edit">Edit My Account</a></li>
-                <li><a href="/me/password">Change password</a></li>
-                {% else %}
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Log In</a></li>
-                {% endif %}
-            </ul>
+            <div class="l-wrapper">
+                <ul>
+                    {% if expressUsers.isAuthenticated %}
+                    <li class="current-user">{{expressUsers.current.username}}</li>
+                    <li><a href="/logout">Log Out</a></li>
+                    <li><a href="/me">My Account</a></li>
+                    <li><a href="/me/edit">Edit My Account</a></li>
+                    <li><a href="/me/password">Change password</a></li>
+                    {% else %}
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
         {% endblock %}
 
@@ -70,7 +94,9 @@
         </div>
         {% endblock %}
 
-        {% block content %}{% endblock %}
+        <section id="l-main" role="main" class="l-wrapper">
+            {% block content %}{% endblock %}
+        </section>
 
     </body>
 </html>

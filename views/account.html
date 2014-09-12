@@ -1,10 +1,18 @@
 {% extends "userLayout.html" %}
 
-{% block title %}Account{% endblock %}
+{% block expressUserTitle %}Account{% endblock %}
 
 {% block expressUserContent %}
-<h3>Account page</h3>
-<p>username: {{user.username}}</p>
-<p>email: {{user.email}}</p>
-<a href="/me/edit">Edit account informations</a>
+<div>
+    <h3>Your Account</h3>
+
+    <dl class="profile-show">
+        <dt class="profile-show-legend">username</dt>
+        <dd class="profile-show-item username">{{user.username}}</dd>
+        <dt class="profile-show-legend">email</dt>
+        <dd class="profile-show-item email">{{user.email}}</dd>
+    </dl>
+
+    <a href="/me/edit">Edit account informations</a>
+</div>
 {% endblock %}
