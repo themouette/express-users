@@ -1,21 +1,18 @@
 {% extends "userLayout.html" %}
+{% import "forms.html" as forms %}
 
 {% block title %}Provide your password again{% endblock %}
 
 {% block expressUserContent  %}
 <h3>Provide your password again.</h3>
-{% for error in errors.globals %}
-<p class="alert error">{{error}}</p>
-{% endfor %}
+
+{{ forms.globalErrors(errors.globals) }}
+
 <form action="/me/password" method="POST">
     <input type="hidden" name="_method" value="PUT">
-    {% for error in errors.fields.password %}
-    <p>{{error}}</p>
-    {% endfor %}
-    <p>
-        <label for="password">Password:</label>
-        <input type="password" name="password" />
-    </p>
+
+    {{ forms.field("password", label="Password:", value=password, errors=errors.fields.password) }}
+
     <p>
         <input type="submit" value="Go" />
     </p>

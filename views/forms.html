@@ -1,0 +1,46 @@
+{% macro field(name, value='', type='text', label='', errors=[]) %}
+<div class="field">
+    {{fieldErrors(errors, fieldname=name)}}
+    {% if label -%}
+        <label for="{{name}}">{{label}}</label>
+    {%- endif %}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value | escape }}" />
+</div>
+{% endmacro %}
+
+{#
+    Display a form field error
+    @param text         the error text to display
+    @param fieldname    the field error is related to
+#}
+{% macro fieldError(text, fieldname='') %}
+<p class="error error-field{% if fieldname %} error-{{fieldname}}{% endif %}">{{text}}</p>
+{% endmacro %}
+{#
+    Display all errors related to a form field
+    @param errors       an array of errors (strings)
+    @param fieldname    the field error is related to
+#}
+{% macro fieldErrors(errors, fieldname='') %}
+    {% for text in errors %}
+    {{ fieldError(text, fieldname=fieldname) }}
+    {% endfor %}
+{% endmacro %}
+
+{#
+    Display a form global error
+    @param text         the error text to display
+#}
+{% macro globalError(text) %}
+<p class="alert error error-form">{{text}}</p>
+{% endmacro %}
+{#
+    Display all forms global errors
+    @param errors       an array of errors (strings)
+    @param fieldname    the field error is related to
+#}
+{% macro globalErrors(errors, fieldname='') %}
+    {% for text in errors %}
+    {{ globalError(text, fieldname=fieldname) }}
+    {% endfor %}
+{% endmacro %}
