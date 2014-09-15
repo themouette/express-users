@@ -40,13 +40,32 @@
                 width: 960px;
             }
 
+            /* Form related styles */
+            label {
+                display: block;
+                float: left;
+                min-width: 200px;
+            }
+            input[type=text], input[type=password], input[type=submit], .error-field {
+                display: block;
+                margin-left: 200px;
+            }
+            input[type=text]:after, input[type=password]:after {
+                display: block;
+                content: '';
+                clear: left;
+            }
+            .error-field {
+                color: red;
+            }
+
             /* Add profile related style */
             .profile-show{
                 margin: auto;
             }
             .profile-show-legend{
                 display: inline-block;
-                width: 80px;
+                width: 200px;
                 float: left;
             }
             .profile-show-legend:after{
