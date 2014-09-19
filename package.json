@@ -36,6 +36,8 @@
     "express-session": "^1.7.0",
     "body-parser": "^1.5.0",
     "connect-flash": "^0.1.1",
+    "nedb": "^0.11.1",
+    "jade": "^1.7.0",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0"
   }
