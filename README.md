@@ -61,6 +61,52 @@ app.use(require('express-users')({
 `express-users` uses swig internally, but you can use whatever template engine
 you want in your express appication.
 
+## Protect your pages
+
+Protections functions are available directly from user middleware.
+
+## `requireAuthentication`
+
+To go further, user MUST be authenticated
+
+``` javascript
+var user = require('express-users')();
+app.use(users);
+app.get('/my-protected-route',
+    users.requireAuthentication()
+    function (req, res) {
+        res.send('User is authenticated');
+    });
+```
+
+## `requireSudo`
+
+To go further, user MUST have reauthenticated recently
+
+``` javascript
+var user = require('express-users')();
+app.use(users);
+app.get('/my-protected-route',
+    users.requireSudo({
+        // sessionLength: 5 * 60 * 1000,
+        // message: 'Please provide your password to unlock this feature.',
+        //success: 'Your password has been successfuly checked.'
+    }),
+    function (req, res) {
+        res.send('User has proven he knows his password');
+    });
+```
+
+### `resetSudo`
+
+Reset sudo rights.
+
+``` javascript
+app.get('/my-route', users.resetSudo(), function (req, res) {
+    res.send('Admin rights has been deactivated');
+});
+```
+
 ## Run samples
 
 ``` sh
