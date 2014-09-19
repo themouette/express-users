@@ -6,6 +6,10 @@
 {% block expressUserContent  %}
 <h3>Provide your password again.</h3>
 
+{% if message.length %}
+<p>{{message}}</p>
+{% endif %}
+
 {{ forms.globalErrors(errors.globals) }}
 
 <form action="/me/password" method="POST">
