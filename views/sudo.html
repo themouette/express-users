@@ -15,7 +15,7 @@
 <form action="/me/password" method="POST">
     <input type="hidden" name="_method" value="PUT">
 
-    {{ forms.field("password", label="Password:", value=password, errors=errors.fields.password) }}
+    {{ forms.field("password", type="password", label="Password:", value=password, errors=errors.fields.password) }}
 
     <p>
         <input type="submit" value="Go" />
