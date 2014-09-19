@@ -42,12 +42,17 @@ module.exports = function (options) {
 
     // prepare store configuration
     store = options.store;
+    if (!store && options.nedb) {store = 'nedb';}
+    if (!store && options.mongo) {store = 'mongo';}
     switch (store) {
         case 'memory':
             store = require('./lib/stores/memory')();
             break;
+        case 'nedb':
+            store = require('./lib/stores/nedb')(options.nedb);
+            break;
         case 'mongo':
-            store = require('./lib/stores/mongo')();
+            store = require('./lib/stores/mongo')(options.mongo);
             break;
     }
     if (!store) {

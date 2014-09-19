@@ -17,7 +17,16 @@ app.use(require('express-users')({store: 'memory'}));
 `express-users` provides several storage strategies.
 
 * memory
+* nedb: provide nedb options via `nedb` option
 * mongodb
+
+```
+app.use(require('express-users')({
+    store: 'nedb'
+    nedb: {filename: '/var/data/my-app/users'}
+}));
+
+```
 
 It is easy to add others, PRs are welcome.
 
