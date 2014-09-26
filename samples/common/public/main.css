@@ -1,0 +1,174 @@
+/* 1. Base CSS
+ * ============================================================ */
+body {
+    font-family: sans-serif;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 30px;
+}
+
+/*
+ * 2. Layout CSS
+ * ============================================================ */
+/* 2.1 Header */
+#l-menu {
+  background-color: #5C5C5C;
+}
+/* 2.2 Content Wrapper (utility) */
+/* Center main content */
+.l-wrapper{
+  margin: auto;
+  width: 960px;
+}
+.l-small-content-wrapper {
+  margin: auto;
+  max-width: 500px;
+}
+/* 2.3 Messages And Alerts */
+#l-messages {
+}
+/* 2.4 Mainsection */
+#l-main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* 3. Modules
+ * ============================================================ */
+/* 3.1 Top Bar */
+.top-bar {
+  position: relative;
+  padding: 20px;
+  background-color: #5C5C5C;
+}
+  .top-bar a,
+  .top-bar a:link,
+  .top-bar a:active,
+  .top-bar a:visited,
+  .top-bar a:hover,
+  .top-bar a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+  .top-bar > * {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  .top-bar > h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .top-bar > .is-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+    .top-bar > ul > li {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+      .top-bar > ul > li > a {
+        height: 100%;
+      }
+/* 3.2 Menu */
+.menu-bar {
+}
+  .menu-bar:after {
+    clear: both;
+  }
+  .menu-bar > li {
+    display: inline-block;
+    display: table;
+    float: left;
+  }
+    .menu-bar li > a,
+    .menu-bar li > a:link,
+    .menu-bar li > a:active,
+    .menu-bar li > a:visited,
+    .menu-bar li > a:hover,
+    .menu-bar li > a:focus {
+      display: table-cell;
+      vertical-align: middle;
+      text-decoration: none;
+      padding: 0 10px;
+    }
+    /* When in a top-bar, color is overriden*/
+    .top-bar .menu-bar li >  a:hover,
+    .top-bar .menu-bar li > a:focus {
+      background-color: #6C6C6C;
+      color: #fff;
+    }
+
+/* 3.3 Messages and alerts */
+.alert {
+    padding: 30px 10px;
+    margin: 30px;
+    border: 1px solid;
+}
+.alert.error {
+    border-color: #f00;
+    color: #f00;
+    background-color: #fdd;
+}
+.alert.success {
+    border-color: #0f0;
+    color: #0f0;
+    background-color: #dfd;
+}
+.alert.info {
+    border-color: #00f;
+    color: #00f;
+    background-color: #ddf;
+}
+.alert.error-global,
+.alert.success-global,
+.alert.info-global {
+  margin-bottom: 0;
+}
+
+.error-field {
+    color: red;
+}
+label {
+    display: block;
+    float: left;
+    min-width: 200px;
+    line-height: 24px;
+}
+input[type=text], input[type=password], input[type=submit], .error-field {
+    display: block;
+    min-width: 300px;
+    margin-left: 200px;
+    box-sizing: border-box;
+}
+input[type=text]:after, input[type=password]:after {
+    display: block;
+    content: '';
+    clear: left;
+}
+.field {
+  padding: 2px 0;
+}
+
+/* Add profile related style */
+.profile-show{
+    margin: auto;
+}
+.profile-show-legend{
+    display: inline-block;
+    width: 200px;
+    float: left;
+}
+.profile-show-legend:after{
+    content: ": "
+}
+.profile-show-item{
+    margin-left: 80px;
+    display: block;
+}

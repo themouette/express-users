@@ -1,4 +1,5 @@
 var debug         = require('debug')('users:samples:server');
+var path          = require('path');
 
 var express       = require('express');     // call express
 var app           = express();              // define our app using express
@@ -11,6 +12,8 @@ var flash         = require('connect-flash');
 var passport      = require('passport');
 var nunjucks      = require('nunjucks');
 var users         = require('../../index');
+
+var resourcesPath = path.join(__dirname, '..', 'common');
 
 
 // configure app to use bodyParser()
@@ -41,10 +44,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-nunjucks.configure(__dirname + '/views', {
+nunjucks.configure(path.join(resourcesPath, 'views'), {
   autoescape: true,
   express   : app
 });
+
+app.use('/public', express.static(path.join(resourcesPath, 'public')));
 
 // A simple middleware adding
 // flash messages to template context.
@@ -65,7 +70,7 @@ var userRouter = users({
         {id: "julien", username: "julien", password: "pwd", email: "julien@example.com"}
   ],
   // override some default views
-  views: [ __dirname + '/views', __dirname + '/views/users' ]
+  views: [ path.join(resourcesPath, 'views'), path.join(resourcesPath, '/views/users') ]
 });
 app.use(userRouter);
 app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.html');});

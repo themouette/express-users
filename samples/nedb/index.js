@@ -12,6 +12,7 @@ var passport      = require('passport');
 var users         = require('../../index');
 var path          = require('path');
 
+var resourcesPath = path.join(__dirname, '..', 'common');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -44,6 +45,8 @@ app.use(passport.session());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+app.use('/public', express.static(path.join(resourcesPath, 'public')));
+
 // A simple middleware adding
 // flash messages to template context.
 // Simply access flash messages as `flash` variable
@@ -66,7 +69,7 @@ var userRouter = users({
         {id: "julien", username: "julien", password: "pwd", email: "julien@example.com"}
   ],
   // override some default views
-  views: [ __dirname + '/views', __dirname + '/views/users' ]
+  views: [ path.join(resourcesPath, 'views'), path.join(resourcesPath, '/views/users') ]
 });
 
 app.use(userRouter);
