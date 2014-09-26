@@ -11,7 +11,6 @@ var flash         = require('connect-flash');
 var passport      = require('passport');
 var users         = require('../../index');
 var path          = require('path');
-var nunjucks      = require('nunjucks');
 
 var resourcesPath = path.join(__dirname, '..', 'common');
 
@@ -43,10 +42,8 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-nunjucks.configure(path.join(resourcesPath, 'views'), {
-  autoescape: true,
-  express   : app
-});
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 
 app.use('/public', express.static(path.join(resourcesPath, 'public')));
 
@@ -64,10 +61,7 @@ app.use(function (req, res, next) {
 });
 
 var userRouter = users({
-  store: 'nedb',
-  nedb: {
-    filename: path.join(__dirname, 'data')
-  },
+  store: 'memory',
   data: [
         {id: "julien", username: "julien", password: "pwd", email: "julien@example.com"}
   ],
@@ -76,12 +70,12 @@ var userRouter = users({
 });
 
 app.use(userRouter);
-app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.html', {user: req.user});});
+app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.jade', {user: req.user});});
 app.get('/', function (req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/app');
     }
-    res.render('home.html');
+    res.render('index.jade');
 });
 
 module.exports = app;
