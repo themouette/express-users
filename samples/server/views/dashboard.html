@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
-{% block title %}
-{{super()}} - Dashboard
-{% endblock %}
+{% block title -%}
+  {{super()}} - Dashboard
+{%- endblock %}
 {% block content %}
-Welcome to your dashboard !
+{% include "_main_page_content.html" %}
 {% endblock %}

@@ -1,0 +1,91 @@
+<h3>Welcome to Express Users Sample dashboard</h3>
+
+<h4>
+  The simplest way to add multi user ability to an Express application.
+</h4>
+<p>
+{% if expressUsers.isAuthenticated %}
+This is the default template when a user connects to the application.<br>
+Simply replace it with your own by editing the page available at url <code>/app</code>.
+{% else %}
+This is the default template for the product landing page.<br>
+Simply replace it with your own by editing the page available at url <code>/</code>.
+{% endif %}
+</p>
+
+<h4>Out of the box account management</h4>
+<p>
+By default, Express Users provides all required pages to get started with users.<br>
+</p>
+<ul>
+  <li><a href="/login">Login page</a></li>
+  <li><a href="/register">Register</a></li>
+</ul>
+<ul>
+  <li><a href="/me">View My Account</a></li>
+  <li><a href="/me/edit">Edit My Account</a></li>
+  <li><a href="/me/password">Change My Password</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+
+<h4>Access users Informations In Templates</h4>
+<p>
+Current user is available in templates as <code>expressUsers</code>.
+</p>
+<ul>
+  <li><code>expressUsers.isAuthenticated</code>: Is the user authenticated?</li>
+  <li><code>expressUsers.current</code>: The current user object.</li>
+</ul>
+<h5>Sample</h5>
+<p>
+{% raw %}
+{%if expressUsers.isAuthenticated %}
+Connected as <b>{{expressUsers.current.username}}</b>
+{% else %}
+You are not logged in
+{% endif %}
+{% endraw %}
+</p>
+<p>
+Results in
+</p>
+<p>
+{%if expressUsers.isAuthenticated %}
+Connected as <b>{{expressUsers.current.username}}</b>
+{% else %}
+You are not logged in
+{% endif %}
+</p>
+
+<h4>Secure your routes</h4>
+
+<p>Once instanciated, the middleware provides a bunch of utility methods</p>
+<ul>
+  <li><code>requireAuthentication</code> requires the user to be authenticated toaccess further controllers</li>
+  <li><code>requireSudo</code> requires the user to enter its password again to access further middlewares</li>
+  <li><code>resetSudo</code> reset current sudo rights</li>
+</ul>
+
+<h4>Help wanted</h4>
+
+<p>
+There is still a lot of things to do, such as:
+</p>
+<ul>
+<li>Better input validation</li>
+<li>Social authentication/registration</li>
+<li>Manage user roles</li>
+<li>Backend interface</li>
+<li>Lost password</li>
+<li>Send mails</li>
+<li>Verify email address to fullfill registration</li>
+<li>More backends (Mongoose, Sequelize)</li>
+<li>Generate boilerplate code</li>
+</ul>
+
+<h4>Get In Touch</h4>
+<p>
+<a href="https://github.com/themouette/express-users">GitHub</a>
+<a href="https://twitter.com/themouette">Twitter</a>
+</p>
+

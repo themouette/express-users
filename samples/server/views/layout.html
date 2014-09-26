@@ -5,91 +5,22 @@
         <title>{% block title %}Sample App{% endblock %}</title>
 
         {% block head %}
-        <link rel="stylesheet" href="main.css">
-        <style type="text/css" media="screen">
-            #l-menu {
-            }
-            #l-menu li {
-                display: inline-block;
-            }
-            #l-messages {
-            }
-            .alert {
-                padding: 30px 10px;
-                margin: 30px;
-                border: 1px solid;
-            }
-            .alert.error {
-                border-color: #f00;
-                color: #f00;
-                background-color: #fdd;
-            }
-            .alert.success {
-                border-color: #0f0;
-                color: #0f0;
-                background-color: #dfd;
-            }
-            .alert.info {
-                border-color: #00f;
-                color: #00f;
-                background-color: #ddf;
-            }
-
-            .l-wrapper{
-                margin: auto;
-                width: 960px;
-            }
-
-            /* Form related styles */
-            label {
-                display: block;
-                float: left;
-                min-width: 200px;
-            }
-            input[type=text], input[type=password], input[type=submit], .error-field {
-                display: block;
-                margin-left: 200px;
-            }
-            input[type=text]:after, input[type=password]:after {
-                display: block;
-                content: '';
-                clear: left;
-            }
-            .error-field {
-                color: red;
-            }
-
-            /* Add profile related style */
-            .profile-show{
-                margin: auto;
-            }
-            .profile-show-legend{
-                display: inline-block;
-                width: 200px;
-                float: left;
-            }
-            .profile-show-legend:after{
-                content: ": "
-            }
-            .profile-show-item{
-                margin-left: 80px;
-                display: block;
-            }
-        </style>
+        <link rel="stylesheet" href="/public/normalize.css">
+        <link rel="stylesheet" href="/public/main.css">
         {% endblock %}
     </head>
     <body>
 
         {% block menu %}
         <div id="l-menu">
-            <div class="l-wrapper">
-                <ul>
+            <div class="top-bar l-wrapper">
+                <h1><a href="/">My Sample Application</a></h1>
+                <ul class="menu-bar is-right">
                     {% if expressUsers.isAuthenticated %}
-                    <li class="current-user">{{expressUsers.current.username}}</li>
-                    <li><a href="/logout">Log Out</a></li>
-                    <li><a href="/me">My Account</a></li>
                     <li><a href="/me/edit">Edit My Account</a></li>
-                    <li><a href="/me/password">Change password</a></li>
+                    <li><a href="/me/password">Change Password</a></li>
+                    <li><a href="/me"class="current-user">{{expressUsers.current.username}}</a></li>
+                    <li><a href="/logout">Log Out</a></li>
                     {% else %}
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Log In</a></li>
@@ -100,7 +31,7 @@
         {% endblock %}
 
         {% block messages %}
-        <div id="l-messages">
+        <div id="l-messages" class="l-small-content-wrapper">
             {% for error in flash.error %}
             <p class="alert error error-global">{{error}}</p>
             {% endfor %}
