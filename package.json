@@ -7,7 +7,9 @@
   "author": "themouette",
   "scripts": {
     "start": "forever samples/server/index.js",
-    "dev": "DEBUG=users:*,samples:* nodemon samples/server/index.js",
+    "dev": "npm run sample-memory",
+    "sample-memory": "DEBUG=users:*,samples:* nodemon samples/server/index.js",
+    "sample-nedb": "DEBUG=users:*,samples:* nodemon samples/nedb/index.js",
     "unit": "mocha tests/unit/**/*",
     "functionnal": "screenstory --extension tests/wd/commands/index tests/wd/specs/**/*",
     "test": "npm run unit && npm run functionnal"
