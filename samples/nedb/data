@@ -1,0 +1,4 @@
+{"username":"julien","password":"f23ee26ca016120aecfb378d60e01bcf0cfdd0ae","email":"julien@muetton.me","salt":"000affcba61d9c47c2dffff8c26adc39c06d2e6f","passwordStrategy":"salt","canonicalUsername":"julien","canonicalEmail":"julien@muetton.me","_id":"67b2r1bFbZ3CtX6K"}
+{"username":"joe","password":"46165c90a95e407fd3a8280acbc6809c4f4a977d","email":"joe@me.fr","salt":"77d9c2198a477d3b043411ce5cc4ed18d7e1110e","passwordStrategy":"salt","canonicalUsername":"joe","canonicalEmail":"joe@me.fr","_id":"DjJ09lI6lZUNEC8J"}
+{"$$indexCreated":{"fieldName":"canonicalUsername","unique":true,"sparse":false}}
+{"$$indexCreated":{"fieldName":"canonicalEmail","unique":true,"sparse":false}}

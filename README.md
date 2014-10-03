@@ -94,6 +94,9 @@ To go further, user MUST have reauthenticated recently
 
 ``` javascript
 var user = require('express-users')();
+// initialize passport middleware
+app.use(users.passport.initialize());
+app.use(users.passport.session());
 app.use(users);
 app.get('/my-protected-route',
     users.requireSudo({
@@ -115,6 +118,16 @@ app.get('/my-route', users.resetSudo(), function (req, res) {
     res.send('Admin rights has been deactivated');
 });
 ```
+
+## Options
+
+* `passport`: bypass all express-users configuration and provide your own passport backend
+* `passwordChecker`: Which password algorithm to use. 'salt' (alias 'sha1') and 'plain' (alias 'plaintext')
+* `store`: 'memory', 'nedb', 'mongo' (PRs welcome)
+* `cache`: Use template cache ?
+* `data`: Fixtures data to seed store with. See samples for more informations.
+* `sanitizer`: replace the default sanitizer to update logic. See default sanitizer for more information
+* `views`: directories to search first for nunjuck views.
 
 ## Run samples
 

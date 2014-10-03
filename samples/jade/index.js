@@ -38,9 +38,6 @@ app.use(methodOverride(function(req, res){
 }));
 // Add the ability to use flash messages
 app.use(flash());
-// initialize passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -69,6 +66,9 @@ var userRouter = users({
   views: [ path.join(resourcesPath, 'views'), path.join(resourcesPath, '/views/users') ]
 });
 
+// initialize passport middleware
+app.use(userRouter.passport.initialize());
+app.use(userRouter.passport.session());
 app.use(userRouter);
 app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.jade', {user: req.user});});
 app.get('/', function (req, res, next) {

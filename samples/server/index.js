@@ -9,7 +9,6 @@ var methodOverride = require('method-override');
 // var session       = require('express-session');
 var session       = require('cookie-session');
 var flash         = require('connect-flash');
-var passport      = require('passport');
 var nunjucks      = require('nunjucks');
 var users         = require('../../index');
 
@@ -40,9 +39,6 @@ app.use(methodOverride(function(req, res){
 }));
 // Add the ability to use flash messages
 app.use(flash());
-// initialize passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 nunjucks.configure(path.join(resourcesPath, 'views'), {
   autoescape: true,
@@ -72,6 +68,9 @@ var userRouter = users({
   // override some default views
   views: [ path.join(resourcesPath, 'views'), path.join(resourcesPath, '/views/users') ]
 });
+// initialize passport middleware
+app.use(userRouter.passport.initialize());
+app.use(userRouter.passport.session());
 app.use(userRouter);
 app.get('/app', userRouter.requireAuthentication(), function (req, res, next) {res.render('dashboard.html');});
 app.get('/', function (req, res, next) {
