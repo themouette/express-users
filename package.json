@@ -1,6 +1,6 @@
 {
   "name": "express-users",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A drop-in user dashboard for express.",
   "main": "index.js",
   "repository": "https://github.com/themouette/express-users.git",
